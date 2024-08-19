@@ -5,6 +5,7 @@ import eu.pb4.placeholders.api.parsers.TagParser;
 import net.minecraft.screen.AnvilScreenHandler;
 import net.minecraft.screen.ForgingScreenHandler;
 import net.minecraft.text.MutableText;
+import net.minecraft.text.Style;
 import net.minecraft.text.Text;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
@@ -46,7 +47,15 @@ public abstract class AnvilHandlerMixin extends ForgingScreenHandler {
 
 	@Unique
 	private Text parseText() {
-		return (this.player.hasPermissionLevel(2) ? TagParser.DEFAULT : TagParser.DEFAULT_SAFE)
+		Text text = (this.player.hasPermissionLevel(2) ? TagParser.DEFAULT : TagParser.DEFAULT_SAFE)
 				.parseNode(this.newItemName).toText();
+
+		// remove italics if formatting is used
+		boolean usesFormatting = !text.getStyle().equals(Style.EMPTY) || !text.getSiblings().isEmpty();
+		if (usesFormatting) {
+			text = text.copy().setStyle(text.getStyle().withItalic(false));
+		}
+
+		return text;
 	}
 }
