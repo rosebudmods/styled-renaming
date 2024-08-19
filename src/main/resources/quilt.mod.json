@@ -2,25 +2,24 @@
 	"schema_version": 1,
 	"quilt_loader": {
 		"group": "${group}",
-		"id": "example_mod",
+		"id": "${id}",
 		"version": "${version}",
 		"metadata": {
-			"name": "Mod Name",
-			"description": "A short description of your mod.",
+			"name": "styled renaming",
+			"description": "your items named your way!",
 			"contributors": {
-				"Your name here": "Owner"
+				"rosebud": "owner",
+				"orifu": "developer"
 			},
 			"contact": {
-				"homepage": "https://example.com/",
-				"issues": "https://github.com/QuiltMC/quilt-template-mod/issues",
-				"sources": "https://github.com/QuiltMC/quilt-template-mod"
+				"homepage": "https://rosebud.dev/styled-renaming/",
+				"issues": "https://github.com/rosebudmods/styled-renaming/issues",
+				"sources": "https://github.com/rosebudmods/styled-renaming"
 			},
-			"icon": "assets/example_mod/icon.png"
+			"icon": "assets/${id}/icon.png"
 		},
 		"intermediate_mappings": "net.fabricmc:intermediary",
-		"entrypoints": {
-			"init": "com.example.example_mod.ExampleMod"
-		},
+		"entrypoints": {},
 		"depends": [
 			{
 				"id": "quilt_loader",
@@ -32,9 +31,9 @@
 			},
 			{
 				"id": "minecraft",
-				"versions": ">=1.20"
+				"versions": ">=1.21"
 			}
 		]
 	},
-	"mixin": "example_mod.mixins.json"
+	"mixin": "${id}.mixins.json"
 }

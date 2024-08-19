@@ -6,13 +6,13 @@ plugins {
 class ModData {
 	val version = property("version").toString()
 	val mavenGroup = property("maven_group").toString()
-	val archivesBaseName = property("archives_base_name").toString()
+	val id = property("id").toString()
 }
 
 val mod = ModData()
 
 base {
-	archivesName = mod.archivesBaseName
+	archivesName = mod.id
 }
 
 version = "${mod.version}+${libs.versions.minecraft.get()}"
@@ -24,13 +24,16 @@ repositories {
 	// Loom adds the essential maven repositories to download Minecraft and libraries from automatically.
 	// See https://docs.gradle.org/current/userguide/declaring_repositories.html
 	// for more information about repositories.
+
+	maven("https://api.modrinth.com/maven") { name = "Modrinth" }
+	maven("https://maven.nucleoid.xyz/") { name = "Nucleoid" }
 }
 
 loom {
 	// Loom and Loader both use this block in order to gather more information about your mod.
 	mods {
 		// This should match your mod id.
-		create("example_mod") {
+		create(mod.id) {
 			// Tell Loom about each source set used by your mod here. This ensures that your mod's classes are properly transformed by Loader.
 			sourceSet("main")
 			// If you shade (directly include classes, not JiJ) a dependency into your mod, include it here using one of these methods:
@@ -51,10 +54,12 @@ dependencies {
 	// Quilted Fabric API will automatically pull in the correct QSL version.
 	modImplementation(libs.bundles.quilted.fabric.api)
 	// modImplementation(libs.bundles.quilted.fabric.api.deprecated) // If you wish to use Fabric API's deprecated modules, you can replace the above line with this one
+
+	modRuntimeOnly(libs.mod.menu)
 }
 
 tasks.processResources {
-	val map = mapOf("version" to version, "group" to project.group)
+	val map = mapOf("version" to version, "id" to mod.id, "group" to project.group)
 
 	inputs.properties(map)
 

@@ -1,13 +1,15 @@
 # The latest versions are available at https://quiltmc.org/en/usage/latest-versions/
 [versions]
-minecraft = "1.20.6"
-quilt_mappings = "1.20.6+build.6"
+minecraft = "1.21"
+quilt_mappings = "1.21+build.18"
 
 quilt_loom = "1.7.4"
 quilt_loader = "0.26.3"
 
-quilted_fabric_api = "10.0.0-alpha.3+0.100.4-1.20.6"
-quilt_standard_libraries = "9.0.0-alpha.1+1.20.6"
+quilted_fabric_api = "11.0.0-alpha.3+0.102.0-1.21"
+quilt_standard_libraries = "10.0.0-alpha.1+1.21"
+
+mod_menu = "11.0.1"
 
 [libraries]
 minecraft = { module = "com.mojang:minecraft", version.ref = "minecraft" }
@@ -17,6 +19,8 @@ quilt_loader = { module = "org.quiltmc:quilt-loader", version.ref = "quilt_loade
 quilt_standard_libraries = { module = "org.quiltmc:qsl", version.ref = "quilt_standard_libraries" }
 quilted_fabric_api = { module = "org.quiltmc.quilted-fabric-api:quilted-fabric-api", version.ref = "quilted_fabric_api" }
 quilted_fabric_api_deprecated = { module = "org.quiltmc.quilted-fabric-api:quilted-fabric-api-deprecated", version.ref = "quilted_fabric_api" }
+
+mod_menu = { module = "maven.modrinth:modmenu", version.ref = "mod_menu" }
 
 # If you have multiple similar dependencies, you can declare a dependency bundle and reference it on the build script with "libs.bundles.example".
 [bundles]
