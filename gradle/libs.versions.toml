@@ -9,6 +9,8 @@ quilt_loader = "0.26.3"
 quilted_fabric_api = "11.0.0-alpha.3+0.102.0-1.21"
 quilt_standard_libraries = "10.0.0-alpha.1+1.21"
 
+placeholder_api = "2.4.1+1.21"
+
 mod_menu = "11.0.1"
 
 [libraries]
@@ -19,6 +21,8 @@ quilt_loader = { module = "org.quiltmc:quilt-loader", version.ref = "quilt_loade
 quilt_standard_libraries = { module = "org.quiltmc:qsl", version.ref = "quilt_standard_libraries" }
 quilted_fabric_api = { module = "org.quiltmc.quilted-fabric-api:quilted-fabric-api", version.ref = "quilted_fabric_api" }
 quilted_fabric_api_deprecated = { module = "org.quiltmc.quilted-fabric-api:quilted-fabric-api-deprecated", version.ref = "quilted_fabric_api" }
+
+placeholder_api = { module = "eu.pb4:placeholder-api", version.ref = "placeholder_api" }
 
 mod_menu = { module = "maven.modrinth:modmenu", version.ref = "mod_menu" }
 

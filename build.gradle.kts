@@ -55,6 +55,9 @@ dependencies {
 	modImplementation(libs.bundles.quilted.fabric.api)
 	// modImplementation(libs.bundles.quilted.fabric.api.deprecated) // If you wish to use Fabric API's deprecated modules, you can replace the above line with this one
 
+	modImplementation(libs.placeholder.api)
+	include(libs.placeholder.api)
+
 	modRuntimeOnly(libs.mod.menu)
 }
 

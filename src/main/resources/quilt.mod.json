@@ -7,6 +7,7 @@
 		"metadata": {
 			"name": "styled renaming",
 			"description": "your items named your way!",
+			"license": "CC0-1.0",
 			"contributors": {
 				"rosebud": "owner",
 				"orifu": "developer"
@@ -24,10 +25,6 @@
 			{
 				"id": "quilt_loader",
 				"versions": ">=0.19.1"
-			},
-			{
-				"id": "quilted_fabric_api",
-				"versions": ">=7.0.2"
 			},
 			{
 				"id": "minecraft",
