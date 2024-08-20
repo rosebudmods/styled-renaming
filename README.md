@@ -4,12 +4,14 @@ this mod allows you to use colours and other formatting when renaming items thro
 
 italics is also disabled when using quicktext, but can be brought back using the `<i>` tag.
 
+the mod only needs to be installed on the server, but the experience may be smoother if installed on the client too.
+
 examples:
 
 - `<red>My Sword` becomes "<font color="#FF5555">My Sword</font>"
 - `<c #d4c8ff><b>styled</> <c #f580ad>renaming` becomes "<font color="#d4c8ff"><b>styled</b></font> <font color="#f580ad">renaming</font>"
 
-this mod needs [quilt loader](https://quiltmc.org/). if you're using fabric, you can switch over and keep all your mods!
+this mod runs on [quilt](https://quiltmc.org/). if you're using fabric, you can switch over and keep all your mods!
 
 credits
 
