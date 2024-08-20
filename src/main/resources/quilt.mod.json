@@ -20,11 +20,16 @@
 			"icon": "assets/${id}/icon.png"
 		},
 		"intermediate_mappings": "net.fabricmc:intermediary",
-		"entrypoints": {},
+		"entrypoints": {
+			"init": "dev.rosebud.styled_renaming.StyledRenaming"
+		},
 		"depends": [
 			{
 				"id": "quilt_loader",
 				"versions": ">=0.19.1"
+			},
+			{
+				"id": "quilt_base"
 			},
 			{
 				"id": "minecraft",

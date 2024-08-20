@@ -1,8 +1,10 @@
 package dev.rosebud.styled_renaming.mixin;
 
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
-import com.llamalad7.mixinextras.injector.ModifyReturnValue;
+import com.llamalad7.mixinextras.sugar.Local;
+import dev.rosebud.styled_renaming.StyledRenaming;
 import eu.pb4.placeholders.api.parsers.TagParser;
+import net.minecraft.item.ItemStack;
 import net.minecraft.screen.AnvilScreenHandler;
 import net.minecraft.screen.ForgingScreenHandler;
 import net.minecraft.text.MutableText;
@@ -14,6 +16,8 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(AnvilScreenHandler.class)
 public abstract class AnvilHandlerMixin extends ForgingScreenHandler {
@@ -32,8 +36,14 @@ public abstract class AnvilHandlerMixin extends ForgingScreenHandler {
 					target = "Lnet/minecraft/text/Text;literal(Ljava/lang/String;)Lnet/minecraft/text/MutableText;"
 			)
 	)
-	public MutableText updateItemName(MutableText original) {
+	public MutableText updateResultingItemName(MutableText original, @Local(ordinal = 1) ItemStack stack) {
+		stack.set(StyledRenaming.RAW_NAME_COMPONENT, this.newItemName);
 		return this.parseText(this.newItemName).copy();
+	}
+
+	@Inject(method = "updateResult", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;remove(Lnet/minecraft/component/DataComponentType;)Ljava/lang/Object;"))
+	public void updateRemoveItemName(CallbackInfo ci, @Local(ordinal = 1) ItemStack stack) {
+		stack.remove(StyledRenaming.RAW_NAME_COMPONENT);
 	}
 
 	@ModifyExpressionValue(
