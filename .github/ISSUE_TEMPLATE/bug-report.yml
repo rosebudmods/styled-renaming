@@ -1,0 +1,58 @@
+name: bug report
+description: the mod has a problem or it causes a crash.
+labels: [bug]
+assignees: [orifu]
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        thank you for making a bug report! here's the information we need:
+  - type: dropdown
+    id: minecraft
+    attributes:
+      label: minecraft version
+      description: on what version of minecraft did you encounter the bug?
+      options:
+        - 1.21.1
+        - another version
+    validations:
+      required: true
+  - type: dropdown
+    id: mod-version
+    attributes:
+      label: mod version
+      description: which version of skin overrides are you using?
+      options:
+        - 1.0.0
+    validations:
+      required: true
+  - type: dropdown
+    id: mod-loader
+    attributes:
+      label: mod loader
+      description: which mod loader are you using?
+      options:
+        - quilt
+        - fabric
+        - neoforge
+        - i don't know/other
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: what went wrong?
+      description: describe what went wrong (did it crash? is something not working?)
+      placeholder: |
+        the game crashes when trying to...
+    validations:
+      required: true
+  - type: input
+    id: log
+    attributes:
+      label: log file
+      description: >
+        having a log file is very helpful for debugging. if you can, upload your log
+        using a website like [mclo.gs](https://mclo.gs/) and add the link here.
+      placeholder: https://mclo.gs/...
