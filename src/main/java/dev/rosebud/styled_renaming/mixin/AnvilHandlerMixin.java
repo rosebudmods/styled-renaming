@@ -63,7 +63,7 @@ public abstract class AnvilHandlerMixin extends ForgingScreenHandler {
 	public boolean testItemNameEquality(boolean original, @Local(ordinal = 0) ItemStack existing) {
 		// name is equal if the raw text is the same, rather than the output text
 		return this.newItemName.equals(
-				existing.getOrDefault(StyledRenaming.RAW_NAME_COMPONENT, existing.getName().getString()));
+				StyledRenaming.getRawName(existing, existing.getName().getString()));
 	}
 
 	@ModifyExpressionValue(

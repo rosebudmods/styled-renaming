@@ -57,6 +57,8 @@ dependencies {
 
 	modImplementation(libs.placeholder.api)
 	include(libs.placeholder.api)
+	modImplementation(libs.polymer.core)
+	include(libs.polymer.core)
 
 	modRuntimeOnly(libs.mod.menu)
 }

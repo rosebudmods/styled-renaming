@@ -2,6 +2,7 @@ package dev.rosebud.styled_renaming.mixin;
 
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import dev.rosebud.styled_renaming.StyledRenaming;
+import eu.pb4.polymer.core.api.item.PolymerItemUtils;
 import net.minecraft.client.gui.screen.ingame.AnvilScreen;
 import net.minecraft.client.gui.widget.TextFieldWidget;
 import net.minecraft.item.ItemStack;
@@ -27,7 +28,7 @@ public class AnvilScreenMixin {
             at = @At(value = "INVOKE", target = "Lnet/minecraft/text/Text;getString()Ljava/lang/String;")
     )
     private String getItemName(String existing, ScreenHandler handler, int slotId, ItemStack stack) {
-        String rawName = stack.get(StyledRenaming.RAW_NAME_COMPONENT);
+        String rawName = StyledRenaming.getRawName(stack);
 
         return rawName != null ? rawName : existing;
     }
