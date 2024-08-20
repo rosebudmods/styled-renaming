@@ -37,13 +37,33 @@ public abstract class AnvilHandlerMixin extends ForgingScreenHandler {
 			)
 	)
 	public MutableText updateResultingItemName(MutableText original, @Local(ordinal = 1) ItemStack stack) {
+		// set the raw name component
 		stack.set(StyledRenaming.RAW_NAME_COMPONENT, this.newItemName);
+
+		// replace the literal text (original) with the parsed text
 		return this.parseText(this.newItemName).copy();
 	}
 
-	@Inject(method = "updateResult", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;remove(Lnet/minecraft/component/DataComponentType;)Ljava/lang/Object;"))
+	@Inject(
+			method = "updateResult",
+			at = @At(
+					value = "INVOKE",
+					target = "Lnet/minecraft/item/ItemStack;remove(Lnet/minecraft/component/DataComponentType;)Ljava/lang/Object;"
+			)
+	)
 	public void updateRemoveItemName(CallbackInfo ci, @Local(ordinal = 1) ItemStack stack) {
+		// remove the raw name component if the item is now using its regular name again
 		stack.remove(StyledRenaming.RAW_NAME_COMPONENT);
+	}
+
+	@ModifyExpressionValue(
+			method = "updateResult",
+			at = @At(value = "INVOKE", target = "Ljava/lang/String;equals(Ljava/lang/Object;)Z")
+	)
+	public boolean testItemNameEquality(boolean original, @Local(ordinal = 0) ItemStack existing) {
+		// name is equal if the raw text is the same, rather than the output text
+		return this.newItemName.equals(
+				existing.getOrDefault(StyledRenaming.RAW_NAME_COMPONENT, existing.getName().getString()));
 	}
 
 	@ModifyExpressionValue(
@@ -54,6 +74,7 @@ public abstract class AnvilHandlerMixin extends ForgingScreenHandler {
 			)
 	)
 	public MutableText setNewItemName(MutableText original) {
+		// update the name displayed to the client
 		return this.parseText(this.newItemName).copy();
 	}
 
@@ -70,6 +91,7 @@ public abstract class AnvilHandlerMixin extends ForgingScreenHandler {
 		String cleaned = ChatUtil.method_57180(newItemName);
 		Text parsed = this.parseText(cleaned);
 
+		// if the resulting text from the parsed version is under 50 characters, allow it
 		return parsed.getString().length() <= 50 ? cleaned : null;
 	}
 
