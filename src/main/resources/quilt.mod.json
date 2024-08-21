@@ -1,41 +1,41 @@
 {
-	"schema_version": 1,
-	"quilt_loader": {
-		"group": "${group}",
-		"id": "${id}",
-		"version": "${version}",
-		"metadata": {
-			"name": "styled renaming",
-			"description": "your items named your way!",
-			"license": "CC0-1.0",
-			"contributors": {
-				"rosebud": "owner",
-				"orifu": "developer"
-			},
-			"contact": {
-				"homepage": "https://rosebud.dev/styled-renaming/",
-				"issues": "https://github.com/rosebudmods/styled-renaming/issues",
-				"sources": "https://github.com/rosebudmods/styled-renaming"
-			},
-			"icon": "assets/${id}/icon.png"
-		},
-		"intermediate_mappings": "net.fabricmc:intermediary",
-		"entrypoints": {
-			"init": "dev.rosebud.styled_renaming.StyledRenaming"
-		},
-		"depends": [
-			{
-				"id": "quilt_loader",
-				"versions": ">=0.19.1"
-			},
-			{
-				"id": "quilt_base"
-			},
-			{
-				"id": "minecraft",
-				"versions": ">=1.21"
-			}
-		]
-	},
-	"mixin": "${id}.mixins.json"
+    "schema_version": 1,
+    "quilt_loader": {
+        "group": "${group}",
+        "id": "${id}",
+        "version": "${version}",
+        "metadata": {
+            "name": "styled renaming",
+            "description": "your items named your way!",
+            "license": "CC0-1.0",
+            "contributors": {
+                "rosebud": "owner",
+                "orifu": "developer"
+            },
+            "contact": {
+                "homepage": "https://rosebud.dev/styled-renaming/",
+                "issues": "https://github.com/rosebudmods/styled-renaming/issues",
+                "sources": "https://github.com/rosebudmods/styled-renaming"
+            },
+            "icon": "assets/${id}/icon.png"
+        },
+        "intermediate_mappings": "net.fabricmc:intermediary",
+        "entrypoints": {
+            "init": "dev.rosebud.styled_renaming.StyledRenaming"
+        },
+        "depends": [
+            {
+                "id": "quilt_loader",
+                "versions": ">=0.19.1"
+            },
+            {
+                "id": "quilt_base"
+            },
+            {
+                "id": "minecraft",
+                "versions": ">=1.21"
+            }
+        ]
+    },
+    "mixin": "${id}.mixins.json"
 }
