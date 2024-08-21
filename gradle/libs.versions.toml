@@ -12,6 +12,8 @@ quilt_standard_libraries = "10.0.0-alpha.1+1.21"
 polymer_core = "0.9.10+1.21.1"
 placeholder_api = "2.4.1+1.21"
 
+mod_publish_plugin = "0.5.2"
+
 mod_menu = "11.0.1"
 
 [libraries]
@@ -35,3 +37,4 @@ quilted_fabric_api_deprecated = ["quilted_fabric_api", "quilt_standard_libraries
 
 [plugins]
 quilt_loom = { id = "org.quiltmc.loom", version.ref = "quilt_loom" }
+mod_publish_plugin = { id = "me.modmuss50.mod-publish-plugin", version.ref = "mod_publish_plugin" }

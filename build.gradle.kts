@@ -1,6 +1,7 @@
 plugins {
 	id("maven-publish")
 	alias(libs.plugins.quilt.loom)
+	alias(libs.plugins.mod.publish.plugin)
 }
 
 class ModData {
@@ -90,6 +91,25 @@ java {
 // If you plan to use a different file for the license, don't forget to change the file name here!
 tasks.jar {
 	from(project.file("LICENSE"))
+}
+
+publishMods {
+	displayName = "styled renaming ${mod.version}"
+	file = tasks.remapJar.get().archiveFile
+	changelog = project.file("CHANGELOG.md").readText()
+	type = STABLE
+
+	modLoaders.add("quilt")
+
+	dryRun = !providers.environmentVariable("MODRINTH_TOKEN").isPresent()
+
+	modrinth {
+		projectId = "Z87eUIv0"
+		accessToken = providers.environmentVariable("MODRINTH_TOKEN")
+		minecraftVersions.add(libs.versions.minecraft)
+
+		requires("qsl")
+	}
 }
 
 // Configure the maven publication

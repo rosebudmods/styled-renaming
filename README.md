@@ -4,7 +4,7 @@ this mod allows you to use colours and other formatting when renaming items thro
 
 italics is also disabled when using quicktext, but can be brought back using the `<i>` tag.
 
-the mod only needs to be installed on the server, but the experience may be smoother if installed on the client too.
+the mod only needs to be installed on the server, but the experience will be smoother if the mod is also installed on the client.
 
 examples:
 
