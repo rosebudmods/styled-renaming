@@ -21,7 +21,7 @@
         },
         "intermediate_mappings": "net.fabricmc:intermediary",
         "entrypoints": {
-            "init": "dev.rosebud.styled_renaming.StyledRenaming"
+            "main": "dev.rosebud.styled_renaming.StyledRenaming"
         },
         "depends": [
             {
@@ -29,11 +29,15 @@
                 "versions": ">=0.19.1"
             },
             {
-                "id": "quilt_base"
+                "id": "fabric-api"
             },
             {
                 "id": "minecraft",
-                "versions": ">=1.21"
+                "versions": ">=1.21.3"
+            },
+            {
+                "id": "polymer-core",
+                "versions": ">=0.10.2"
             }
         ]
     },

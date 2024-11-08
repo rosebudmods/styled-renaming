@@ -25,8 +25,9 @@ public abstract class AnvilHandlerMixin extends ForgingScreenHandler {
     @Nullable
     private String newItemName;
 
+    @SuppressWarnings("all")
     public AnvilHandlerMixin() {
-        super(null, 0, null, null);
+        super(null, 0, null, null, null);
     }
 
     @ModifyExpressionValue(
@@ -97,7 +98,7 @@ public abstract class AnvilHandlerMixin extends ForgingScreenHandler {
 
     @Unique
     private Text parseText(String newItemName) {
-        Text text = (this.player.hasPermissionLevel(2) ? TagParser.DEFAULT : TagParser.DEFAULT_SAFE)
+        Text text = (this.player.hasPermissions(2) ? TagParser.DEFAULT : TagParser.DEFAULT_SAFE)
                 .parseNode(newItemName).toText();
 
         // remove italics if formatting is used

@@ -2,7 +2,6 @@ package dev.rosebud.styled_renaming.mixin;
 
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import dev.rosebud.styled_renaming.StyledRenaming;
-import eu.pb4.polymer.core.api.item.PolymerItemUtils;
 import net.minecraft.client.gui.screen.ingame.AnvilScreen;
 import net.minecraft.client.gui.widget.TextFieldWidget;
 import net.minecraft.item.ItemStack;

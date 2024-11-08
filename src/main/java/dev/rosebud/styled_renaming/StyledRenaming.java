@@ -3,14 +3,13 @@ package dev.rosebud.styled_renaming;
 import com.mojang.serialization.Codec;
 import eu.pb4.polymer.core.api.item.PolymerItemUtils;
 import eu.pb4.polymer.core.api.other.PolymerComponent;
+import net.fabricmc.api.ModInitializer;
 import net.minecraft.component.DataComponentType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.Nullable;
-import org.quiltmc.loader.api.ModContainer;
-import org.quiltmc.qsl.base.api.entrypoint.ModInitializer;
 
 import java.util.Optional;
 
@@ -23,7 +22,7 @@ public class StyledRenaming implements ModInitializer {
     );
 
     @Override
-    public void onInitialize(ModContainer mod) {
+    public void onInitialize() {
         PolymerComponent.registerDataComponent(RAW_NAME_COMPONENT);
     }
 
