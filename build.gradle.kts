@@ -48,7 +48,7 @@ loom {
 // See https://docs.gradle.org/current/userguide/platforms.html for information on how version catalogs work.
 dependencies {
     minecraft(libs.minecraft)
-    mappings(variantOf(libs.quilt.mappings) { classifier("intermediary-v2") })
+    mappings(loom.officialMojangMappings())
     modImplementation(libs.quilt.loader)
 
     // QSL is not a complete API; You will need Quilted Fabric API to fill in the gaps.

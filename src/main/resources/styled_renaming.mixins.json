@@ -3,7 +3,7 @@
     "minVersion": "0.8",
     "package": "dev.rosebud.styled_renaming.mixin",
     "compatibilityLevel": "JAVA_17",
-    "mixins": ["AnvilHandlerMixin"],
+    "mixins": ["AnvilMenuMixin"],
     "client": ["AnvilScreenMixin"],
     "injectors": {
         "defaultRequire": 1

@@ -4,21 +4,21 @@ import com.mojang.serialization.Codec;
 import eu.pb4.polymer.core.api.item.PolymerItemUtils;
 import eu.pb4.polymer.core.api.other.PolymerComponent;
 import net.fabricmc.api.ModInitializer;
-import net.minecraft.component.DataComponentType;
-import net.minecraft.item.ItemStack;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
-import net.minecraft.util.Identifier;
+import net.minecraft.core.Registry;
+import net.minecraft.core.component.DataComponentType;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Optional;
 
 public class StyledRenaming implements ModInitializer {
-    public static final Identifier RAW_NAME_ID = Identifier.of("styled_renaming", "raw_name");
+    public static final ResourceLocation RAW_NAME_ID = ResourceLocation.fromNamespaceAndPath("styled_renaming", "raw_name");
     public static final DataComponentType<String> RAW_NAME_COMPONENT = Registry.register(
-            Registries.DATA_COMPONENT_TYPE,
+            BuiltInRegistries.DATA_COMPONENT_TYPE,
             RAW_NAME_ID,
-            DataComponentType.<String>builder().codec(Codec.STRING).build()
+            DataComponentType.<String>builder().persistent(Codec.STRING).build()
     );
 
     @Override
@@ -36,6 +36,6 @@ public class StyledRenaming implements ModInitializer {
         if (rawName != null) return rawName;
 
         var components = Optional.ofNullable(PolymerItemUtils.getPolymerComponents(stack));
-        return components.map(comps -> comps.get(RAW_NAME_ID).asString()).orElse(fallback);
+        return components.map(comps -> comps.get(RAW_NAME_ID).getAsString()).orElse(fallback);
     }
 }
