@@ -27,7 +27,10 @@ public abstract class AnvilMenuMixin extends ItemCombinerMenu {
 
     @SuppressWarnings("all")
     public AnvilMenuMixin() {
+        //? if >=1.21.2 {
         super(null, 0, null, null, null);
+        //?} else
+        /*super(null, 0, null, null);*/
     }
 
     @ModifyExpressionValue(

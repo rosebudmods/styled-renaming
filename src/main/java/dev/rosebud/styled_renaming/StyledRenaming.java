@@ -36,6 +36,9 @@ public class StyledRenaming implements ModInitializer {
         if (rawName != null) return rawName;
 
         var components = Optional.ofNullable(PolymerItemUtils.getPolymerComponents(stack));
-        return components.map(comps -> comps.get(RAW_NAME_ID).getAsString()).orElse(fallback);
+        //? if >=1.21.5 {
+        return components.flatMap(comps -> comps.get(RAW_NAME_ID).asString()).orElse(fallback);
+        //?} else
+        /*return components.map(comps -> comps.get(RAW_NAME_ID).getAsString()).orElse(fallback);*/
     }
 }

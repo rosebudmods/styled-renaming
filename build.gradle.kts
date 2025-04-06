@@ -1,13 +1,24 @@
 plugins {
     id("maven-publish")
-    alias(libs.plugins.quilt.loom)
-    alias(libs.plugins.mod.publish.plugin)
+    id("fabric-loom") version "1.10-SNAPSHOT"
+    id("me.modmuss50.mod-publish-plugin") version "0.5.2"
 }
 
 class ModData {
     val version = property("version").toString()
     val mavenGroup = property("maven_group").toString()
     val id = property("id").toString()
+
+    val deps = ModDeps()
+}
+
+class ModDeps {
+    val fabricLoader = "net.fabricmc:fabric-loader:${property("deps.fabric_loader")}"
+
+    val fabricApi = "net.fabricmc.fabric-api:fabric-api:${property("deps.fabric_api")}"
+    val modmenu = "maven.modrinth:modmenu:${property("deps.modmenu")}"
+    val polymerCore = "eu.pb4:polymer-core:${property("deps.polymer_core")}"
+    val placeholderApi = "eu.pb4:placeholder-api:${property("deps.placeholder_api")}"
 }
 
 val mod = ModData()
@@ -16,8 +27,14 @@ base {
     archivesName = mod.id
 }
 
-version = "${mod.version}+${libs.versions.minecraft.get()}"
 group = mod.mavenGroup
+
+if (stonecutter.current.isActive) {
+    rootProject.tasks.register("client") {
+        group = "project"
+        dependsOn(tasks.named("runClient"))
+    }
+}
 
 repositories {
     // Add repositories to retrieve artifacts from in here.
@@ -26,6 +43,7 @@ repositories {
     // See https://docs.gradle.org/current/userguide/declaring_repositories.html
     // for more information about repositories.
 
+    maven("https://maven.quiltmc.org/repository/release") { name = "Quilt" }
     maven("https://api.modrinth.com/maven") { name = "Modrinth" }
     maven("https://maven.nucleoid.xyz/") { name = "Nucleoid" }
 }
@@ -33,7 +51,6 @@ repositories {
 loom {
     // Loom and Loader both use this block in order to gather more information about your mod.
     mods {
-        // This should match your mod id.
         create(mod.id) {
             // Tell Loom about each source set used by your mod here. This ensures that your mod's classes are properly transformed by Loader.
             sourceSet("main")
@@ -44,23 +61,16 @@ loom {
     }
 }
 
-// All the dependencies are declared at gradle/libs.version.toml and referenced with "libs.<id>"
-// See https://docs.gradle.org/current/userguide/platforms.html for information on how version catalogs work.
 dependencies {
-    minecraft(libs.minecraft)
+    minecraft("com.mojang:minecraft:${stonecutter.current.project}")
     mappings(loom.officialMojangMappings())
-    modImplementation(libs.quilt.loader)
+    modImplementation(mod.deps.fabricLoader)
 
-    // QSL is not a complete API; You will need Quilted Fabric API to fill in the gaps.
-    // Quilted Fabric API will automatically pull in the correct QSL version.
-//    modImplementation(libs.bundles.quilted.fabric.api)
-    // modImplementation(libs.bundles.quilted.fabric.api.deprecated) // If you wish to use Fabric API's deprecated modules, you can replace the above line with this one
-    modImplementation(libs.placeholder.api)
-    modImplementation(libs.polymer.core)
+    modImplementation(mod.deps.placeholderApi)
+    modImplementation(mod.deps.polymerCore)
 
-    modRuntimeOnly(libs.fabric.api)
-    modRuntimeOnly(libs.polymer.core)
-    modRuntimeOnly(libs.mod.menu)
+    modRuntimeOnly(mod.deps.fabricApi)
+    modRuntimeOnly(mod.deps.modmenu)
 }
 
 tasks.processResources {
@@ -68,7 +78,7 @@ tasks.processResources {
 
     inputs.properties(map)
 
-    filesMatching("quilt.mod.json") {
+    filesMatching(listOf("quilt.mod.json", "fabric.mod.json")) {
         expand(map)
     }
 }
@@ -80,7 +90,7 @@ java {
 
     // Loom will automatically attach sourcesJar to a RemapSourcesJar task and to the "build" task if it is present.
     // If you remove this line, sources will not be generated.
-    withSourcesJar()
+    // withSourcesJar()
 
     // If this mod is going to be a library, then it should also generate Javadocs in order to aid with development.
     // Uncomment this line to generate them.
@@ -95,7 +105,7 @@ tasks.jar {
 publishMods {
     displayName = "styled renaming ${mod.version}"
     file = tasks.remapJar.get().archiveFile
-    changelog = project.file("CHANGELOG.md").readText()
+    changelog = rootProject.file("CHANGELOG.md").readText()
     type = STABLE
 
     modLoaders.add("quilt")
@@ -105,7 +115,7 @@ publishMods {
     modrinth {
         projectId = "Z87eUIv0"
         accessToken = providers.environmentVariable("MODRINTH_TOKEN")
-        minecraftVersions.add(libs.versions.minecraft)
+        minecraftVersions.add(stonecutter.current.project)
 
         requires("qsl")
     }

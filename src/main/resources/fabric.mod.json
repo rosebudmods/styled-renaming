@@ -1,0 +1,24 @@
+{
+    "schemaVersion": 1,
+    "id": "styled-renaming",
+    "version": "${version}",
+    "name": "styled renaming",
+    "description": "your items named your way!",
+    "license": "CC0-1.0",
+    "contributors": ["rosebud", "orifu"],
+    "contact": {
+        "homepage": "https://rosebud.dev/styled-renaming/",
+        "issues": "https://github.com/rosebudmods/styled-renaming/issues",
+        "sources": "https://github.com/rosebudmods/styled-renaming"
+    },
+    "icon": "assets/${id}/icon.png",
+    "entrypoints": {
+        "main": ["dev.rosebud.styled_renaming.StyledRenaming"]
+    },
+    "depends": {
+        "minecraft": ">=1.21",
+        "polymer-core": ">=0.9.0",
+        "placeholder-api": ">=2.4.0"
+    },
+    "mixins": ["${id}.mixins.json"]
+}
