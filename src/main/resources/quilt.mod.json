@@ -37,7 +37,11 @@
             },
             {
                 "id": "polymer-core",
-                "versions": ">=0.10.2"
+                "versions": ">=0.9.0"
+            },
+            {
+                "id": "placeholder-api",
+                "versions": ">=2.4.0"
             }
         ]
     },
