@@ -1,9 +1,9 @@
 {
     "schemaVersion": 1,
-    "id": "styled-renaming",
+    "id": "${id}",
     "version": "${version}",
     "name": "styled renaming",
-    "description": "your items named your way!",
+    "description": "your items, named your way!",
     "license": "MPL-2.0",
     "contributors": ["rosebud", "orifu"],
     "contact": {
