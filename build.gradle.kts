@@ -1,7 +1,7 @@
 plugins {
     id("maven-publish")
     id("fabric-loom") version "1.10-SNAPSHOT"
-    id("me.modmuss50.mod-publish-plugin") version "0.5.2"
+    id("me.modmuss50.mod-publish-plugin") version "0.8.4"
 }
 
 class ModData {
@@ -22,6 +22,7 @@ class ModDeps {
 }
 
 val mod = ModData()
+val publishFor = property("publish.for").toString().split(" ").filter { it.isNotEmpty() }
 
 base {
     archivesName = mod.id
@@ -108,16 +109,19 @@ publishMods {
     changelog = rootProject.file("CHANGELOG.md").readText()
     type = STABLE
 
-    modLoaders.add("quilt")
+    modLoaders.addAll("fabric", "quilt")
 
-    dryRun = !providers.environmentVariable("MODRINTH_TOKEN").isPresent()
+    dryRun = !providers.environmentVariable("MODRINTH_TOKEN").isPresent
+            || publishFor.isEmpty()
 
     modrinth {
         projectId = "Z87eUIv0"
         accessToken = providers.environmentVariable("MODRINTH_TOKEN")
-        minecraftVersions.add(stonecutter.current.project)
+        minecraftVersions.addAll(publishFor)
 
-        requires("qsl")
+        projectDescription = rootProject.file("README.md").readText()
+
+        requires("polymer", "placeholder-api")
     }
 }
 
