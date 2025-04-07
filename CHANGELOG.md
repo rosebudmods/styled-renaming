@@ -1,1 +1,3 @@
-first release of the mod!
+- updated to 1.21.2, 1.21.3, 1.21.4 and 1.21.5!
+- [polymer](https://modrinth.com/mod/xGdtZczs) and [text placeholder api](https://modrinth.com/mod/eXts2L7r) are no longer bundled. download them separately!
+- updated the mod icon!
