@@ -4,7 +4,7 @@
     "version": "${version}",
     "name": "styled renaming",
     "description": "your items named your way!",
-    "license": "CC0-1.0",
+    "license": "MPL-2.0",
     "contributors": ["rosebud", "orifu"],
     "contact": {
         "homepage": "https://rosebud.dev/styled-renaming/",
