@@ -105,8 +105,12 @@ public abstract class AnvilMenuMixin extends ItemCombinerMenu {
                 .parseNode(newItemName).toText();
 
         // remove italics if formatting is used
-        boolean usesFormatting = !comp.getStyle().equals(Style.EMPTY) || !comp.getSiblings().isEmpty();
-        if (usesFormatting) {
+        boolean usesFormatting = !comp.getStyle().equals(Style.EMPTY) // has non-plain root style
+                || !comp.getSiblings().isEmpty() // has styled siblings
+                || comp.getSiblings().isEmpty() && comp.getString().length() != newItemName.length(); // length changes
+        boolean hasRootItalics = comp.getStyle().isItalic();
+
+        if (usesFormatting && !hasRootItalics) {
             comp = comp.copy().setStyle(comp.getStyle().withItalic(false));
         }
 

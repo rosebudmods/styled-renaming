@@ -15,6 +15,7 @@ for name in ../versions/*; do
     unzip -q "$version.jar" -d "$version"
 
     # remove minecraft version metadata
+    sed -E -i "s/^(\s*)\"version\":\s*\"(.+?)\+1(\.[0-9]+)+\"(,?)\$/\1\"version\": \"\2\"\4/" "$version/fabric.mod.json"
     sed -i "/^Fabric-Minecraft-Version/d" "$version/META-INF/MANIFEST.MF"
 
     if [[ -z "$last_version" ]]; then

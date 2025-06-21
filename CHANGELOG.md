@@ -1,3 +1,3 @@
-- updated to 1.21.2, 1.21.3, 1.21.4 and 1.21.5!
-- [polymer](https://modrinth.com/mod/xGdtZczs) and [text placeholder api](https://modrinth.com/mod/eXts2L7r) are no longer bundled. download them separately!
-- updated the mod icon!
+- marked the 1.21.5 version as compatible with 1.21.6
+- fixed the italics tag `<i>` not working
+- fixed `<clear>`/`<reset>` not clearing italics

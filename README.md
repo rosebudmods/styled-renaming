@@ -1,4 +1,4 @@
-![styled renaming: your items, named your way!](./.assets/banner.png)
+![styled renaming: your items, named your way!](https://github.com/rosebudmods/styled-renaming/raw/main/.assets/banner.png)
 
 ## overview
 

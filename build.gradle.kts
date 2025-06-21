@@ -13,6 +13,7 @@ class ModData {
 }
 
 class ModDeps {
+    val minecraft = "com.mojang:minecraft:${stonecutter.current.project}"
     val fabricLoader = "net.fabricmc:fabric-loader:${property("deps.fabric_loader")}"
 
     val fabricApi = "net.fabricmc.fabric-api:fabric-api:${property("deps.fabric_api")}"
@@ -28,12 +29,17 @@ base {
     archivesName = mod.id
 }
 
+version = "${mod.version}+${stonecutter.current.project}"
 group = mod.mavenGroup
 
 if (stonecutter.current.isActive) {
     rootProject.tasks.register("client") {
         group = "project"
         dependsOn(tasks.named("runClient"))
+    }
+    rootProject.tasks.register("server") {
+        group = "project"
+        dependsOn(tasks.named("runServer"))
     }
 }
 
@@ -63,7 +69,7 @@ loom {
 }
 
 dependencies {
-    minecraft("com.mojang:minecraft:${stonecutter.current.project}")
+    minecraft(mod.deps.minecraft)
     mappings(loom.officialMojangMappings())
     modImplementation(mod.deps.fabricLoader)
 
