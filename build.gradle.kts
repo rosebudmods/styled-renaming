@@ -127,7 +127,7 @@ publishMods {
 
         projectDescription = rootProject.file("README.md").readText()
 
-        requires("polymer", "placeholder-api")
+        requires("polymer", "placeholder-api", "fabric-api")
     }
 }
 

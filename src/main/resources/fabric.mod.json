@@ -18,7 +18,8 @@
     "depends": {
         "minecraft": ">=1.21",
         "polymer-core": ">=0.9.0",
-        "placeholder-api": ">=2.4.0"
+        "placeholder-api": ">=2.4.0",
+        "fabric-registry-sync-v0": "*"
     },
     "mixins": ["${id}.mixins.json"]
 }
