@@ -1,0 +1,12 @@
+name: other issues
+description: for issues or suggestions not covered by the bug report form.
+assignees: [orifu]
+
+body:
+  - type: textarea
+    id: text
+    attributes:
+      label: description
+      description: have a chat!
+    validations:
+      required: true
